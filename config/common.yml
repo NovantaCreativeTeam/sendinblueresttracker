@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    public: true
+
+  novanta.sendinblue.adapter.link:
+    class: 'Novanta\Sendinblue\Adapter\LinkAdapter'
+
+  novanta.sendinblue.resttracker:
+    class: 'Novanta\Sendinblue\RestTracker\RestTracker'
+    arguments:
+      - '@prestashop.adapter.legacy.configuration'
+      - '@prestashop.adapter.data_provider.currency'
+      - '@novanta.sendinblue.adapter.link'
+
+  
