@@ -3,13 +3,18 @@ services:
     public: true
 
   novanta.sendinblue.adapter.link:
+    alias: 'Novanta\Sendinblue\Adapter\LinkAdapter'
+
+  Novanta\Sendinblue\Adapter\LinkAdapter:
     class: 'Novanta\Sendinblue\Adapter\LinkAdapter'
 
+
   novanta.sendinblue.resttracker:
+    alias: 'Novanta\Sendinblue\Service\RestTracker'
+
+  Novanta\Sendinblue\Service\RestTracker:
     class: 'Novanta\Sendinblue\Service\RestTracker'
     arguments:
-      - '@prestashop.adapter.legacy.configuration'
-      - '@prestashop.adapter.data_provider.currency'
-      - '@novanta.sendinblue.adapter.link'
-
-  
+      - '@PrestaShop\PrestaShop\Adapter\Configuration'
+      - '@PrestaShop\PrestaShop\Adapter\Currency\CurrencyDataProvider'
+      - '@Novanta\Sendinblue\Adapter\LinkAdapter'

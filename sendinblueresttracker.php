@@ -63,8 +63,8 @@ class SendinblueRestTracker extends Module
         $order = new Order($order_history->id_order);
         if ($order) {
             $customer = $order->getCustomer();
-            $eventdata = $this->get('novanta.sendinblue.resttracker')->getOrderEventData($order);
-            $this->get('novanta.sendinblue.resttracker')->trackEvent($customer, 'order_status_update', $eventdata);
+            $eventdata = $this->get('Novanta\Sendinblue\Service\RestTracker')->getOrderEventData($order);
+            $this->get('Novanta\Sendinblue\Service\RestTracker')->trackEvent($customer, 'order_status_update', $eventdata);
         }
     }
 
@@ -74,8 +74,8 @@ class SendinblueRestTracker extends Module
             if ($this->isFirstCheckoutStep()) {
                 $customer = $this->context->customer;
 
-                $eventdata = $this->get('novanta.sendinblue.resttracker')->getCartEventData($this->context->cart);
-                $this->get('novanta.sendinblue.resttracker')->trackEvent($customer, 'initiate_checkout', $eventdata);
+                $eventdata = $this->get('Novanta\Sendinblue\Service\RestTracker')->getCartEventData($this->context->cart);
+                $this->get('Novanta\Sendinblue\Service\RestTracker')->trackEvent($customer, 'initiate_checkout', $eventdata);
             }
         }
     }

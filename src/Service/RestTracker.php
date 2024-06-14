@@ -29,7 +29,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Novanta\Sendinblue\Adapter\LinkAdapter;
 use Order;
-use PrestaShop\PrestaShop\Adapter\Entity\PrestaShopLogger;
+
 use PrestaShop\PrestaShop\Adapter\Presenter\Cart\CartPresenter;
 use PrestaShop\PrestaShop\Core\ConfigurationInterface;
 use PrestaShop\PrestaShop\Core\Currency\CurrencyDataProviderInterface;
@@ -57,7 +57,7 @@ class RestTracker
         $this->automation_key = $this->configuration->get('Sendin_marketingAutomationKey');
 
         $this->client = new Client([
-            'base_url' => 'https://in-automate.brevo.com/api/v2/',
+            'base_uri' => 'https://in-automate.brevo.com/api/v2/',
             'defaults' => [
                 'headers' => [
                     'Accept' => 'application/json',
@@ -83,8 +83,8 @@ class RestTracker
             ]);
 
             return $response->getStatusCode() == 204;
-        } catch (ClientException $e) {
-            PrestaShopLogger::addLog(sprintf('Brevo - Unable to identify user, API call fail - %s', $e->getMessage()), 3, $e->getCode());
+        } catch (\Exception $e) {
+            \PrestaShopLogger::addLog(sprintf('Brevo - Unable to identify user, API call fail - %s', $e->getMessage()), 3, $e->getCode());
 
             return false;
         }
@@ -106,8 +106,8 @@ class RestTracker
             ]);
 
             return $response->getStatusCode() == 204;
-        } catch (ClientException $e) {
-            PrestaShopLogger::addLog(sprintf('Brevo - Unable to track event %s: API call fail - %s', $event, $e->getMessage()), 3, $e->getCode());
+        } catch (\Exception $e) {
+            \PrestaShopLogger::addLog(sprintf('Brevo - Unable to track event %s: API call fail - %s', $event, $e->getMessage()), 3, $e->getCode());
 
             return false;
         }
@@ -128,8 +128,8 @@ class RestTracker
             ]);
 
             return $response->getStatusCode() == 204;
-        } catch (ClientException $e) {
-            PrestaShopLogger::addLog(sprintf('Brevo - Unable to track link %s: API call fail - %s', $link, $e->getMessage()), 3, $e->getCode());
+        } catch (\Exception $e) {
+            \PrestaShopLogger::addLog(sprintf('Brevo - Unable to track link %s: API call fail - %s', $link, $e->getMessage()), 3, $e->getCode());
 
             return false;
         }
@@ -150,8 +150,8 @@ class RestTracker
             ]);
 
             return $response->getStatusCode() == 204;
-        } catch (ClientException $e) {
-            PrestaShopLogger::addLog(sprintf('Brevo - Unable to track page %s: API call fail - %s', $page, $e->getMessage()), 3, $e->getCode());
+        } catch (\Exception $e) {
+            \PrestaShopLogger::addLog(sprintf('Brevo - Unable to track page %s: API call fail - %s', $page, $e->getMessage()), 3, $e->getCode());
 
             return false;
         }
