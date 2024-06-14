@@ -17,19 +17,12 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
  */
-if (!defined('_PS_VERSION_')) {
-    exit;
-}
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 
-/**
- *  Funzione che effettua l'upgrade del modulo alla versione 0.9.8
- *  Registra l'hook actionGetProductPropertiesAfter per il calcolo dei tempi di spedizione
- */
-function upgrade_module_1_0_1($module)
-{
-    if ($module->registerHook('displayHeader') == false) {
-        return false;
-    }
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Cache-Control: post-check=0, pre-check=0', false);
+header('Pragma: no-cache');
 
-    return true;
-}
+header('Location: ../');
+exit;

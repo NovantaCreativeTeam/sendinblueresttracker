@@ -1,10 +1,28 @@
 <?php
+/**
+ * Copyright since 2007 PrestaShop SA and Contributors
+ * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License version 3.0
+ * that is bundled with this package in the file LICENSE.md.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/AFL-3.0
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@prestashop.com so we can send you a copy immediately.
+ *
+ * @author    PrestaShop SA and Contributors <contact@prestashop.com>
+ * @copyright Since 2007 PrestaShop SA and Contributors
+ * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License version 3.0
+ */
 
 namespace Novanta\Sendinblue\Adapter;
 
-use ImageType;
-use Link;
-use Product;
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
 
 class LinkAdapter
 {
@@ -12,26 +30,28 @@ class LinkAdapter
 
     public function __construct()
     {
-        $this->link = new Link();    
+        $this->link = new \Link();
     }
 
-    public function getProductLink(Product $product, $id_lang = null) {
+    public function getProductLink(\Product $product, $id_lang = null)
+    {
         return $this->link->getProductLink($product, null, null, null, $id_lang);
     }
 
-    public function getProductImageLink($id_product, $id_product_attribute = null, $id_lang = null) {
-        $product = new Product($id_product);
+    public function getProductImageLink($id_product, $id_product_attribute = null, $id_lang = null)
+    {
+        $product = new \Product($id_product);
         $image_link = '';
 
-        if($product) {
-            $image_type = ImageType::getFormattedName('home');
+        if ($product) {
+            $image_type = \ImageType::getFormattedName('home');
             $image = null;
 
-            if($id_product_attribute) {
+            if ($id_product_attribute) {
                 $image = $product->getCombinationImageById($id_product_attribute, $id_lang);
-            } 
+            }
 
-            if(empty($image)) {
+            if (empty($image)) {
                 $image = $product->getCover($id_product);
             }
 
@@ -40,5 +60,4 @@ class LinkAdapter
 
         return $image_link;
     }
-    
 }

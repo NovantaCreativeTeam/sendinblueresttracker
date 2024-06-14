@@ -6,7 +6,7 @@ services:
     class: 'Novanta\Sendinblue\Adapter\LinkAdapter'
 
   novanta.sendinblue.resttracker:
-    class: 'Novanta\Sendinblue\RestTracker\RestTracker'
+    class: 'Novanta\Sendinblue\Service\RestTracker'
     arguments:
       - '@prestashop.adapter.legacy.configuration'
       - '@prestashop.adapter.data_provider.currency'
