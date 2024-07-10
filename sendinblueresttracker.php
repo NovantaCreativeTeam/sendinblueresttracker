@@ -32,7 +32,7 @@ class SendinblueRestTracker extends Module
     {
         $this->name = 'sendinblueresttracker';
         $this->tab = 'advertising_marketing';
-        $this->version = '1.0.1';
+        $this->version = '2.0.0';
         $this->author = 'Novanta';
 
         parent::__construct();
@@ -40,7 +40,7 @@ class SendinblueRestTracker extends Module
         $this->displayName = $this->trans('Sendinblue REST tracker', [], 'Modules.Sendinblueresttracker.Admin');
         $this->description = $this->trans('Adding Sendinblue Tracker to track some custom event', [], 'Modules.Sendinblueresttracker.Admin');
         $this->ps_versions_compliancy = [
-            'min' => '1.7.6.0',
+            'min' => '8.0.0',
             'max' => _PS_VERSION_,
         ];
     }
